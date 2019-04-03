@@ -23,7 +23,7 @@
     "dx",
     "tool"
   ],
-  "author": "Yury Shapkarin",
+  "author": "Yury Shapkarin <yury@shapkarin.me> (https://shapkarin.me)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/shapkarin/redux-scaffolder/issues"
