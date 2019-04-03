@@ -1,9 +1,10 @@
 under dev
 
-to try, run
+to try
 
 ```
-node cli/init.js constants -p
+npm install -g redux-scaffolder
+redux const -p
 ```
 
 it will ask you a questions and

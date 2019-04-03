@@ -9,6 +9,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "redux": "./cli/init.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shapkarin/redux-scaffolder.git"
