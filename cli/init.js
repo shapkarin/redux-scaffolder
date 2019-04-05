@@ -53,7 +53,37 @@ program
           }
         });
       });
-  });
+});
+
+
+program
+  .command('reducer [name]')
+  .alias('r')
+  .action(function(name) {
+    inquirer
+      .prompt([
+        {
+          type: 'list',
+          name: 'constantsFromFile',
+          message: 'Read constants from "constants.js" file',
+          paginated: true,
+          choices: ['yes', 'no']
+        }
+      ]).then(function(answers) {
+        generate.createReducer({
+          answers,
+          name,
+          cb: function(status) {
+            if (status) {
+              const spinner = ora();
+              spinner.text =
+                'reducer created successfully';
+              spinner.succeed();
+            }
+          }
+        });
+      });
+});
 
 
 /**
