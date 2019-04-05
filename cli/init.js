@@ -12,7 +12,7 @@ const inquirer = require('inquirer');
 // TODO: use other dependency, just adds color to the text for createConstants()
 const ora = require('ora');
 
-const generate = require('../lib/generate');
+const { createConstants, createReducer } = require('../lib/generate');
 
 program
   .command('constants [folder]')
@@ -40,7 +40,7 @@ program
           }
         }
       ]).then(function(answers) {
-        generate.createConstants({
+        createConstants({
           answers,
           folder,
           cb: function(status) {
@@ -54,7 +54,6 @@ program
         });
       });
 });
-
 
 program
   .command('reducer [name]')
@@ -70,7 +69,7 @@ program
           choices: ['yes', 'no']
         }
       ]).then(function(answers) {
-        generate.createReducer({
+        createReducer({
           answers,
           name,
           cb: function(status) {
@@ -84,7 +83,6 @@ program
         });
       });
 });
-
 
 /**
  * parse commander object
