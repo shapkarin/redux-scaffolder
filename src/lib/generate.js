@@ -7,14 +7,12 @@ const fs = require('fs.extra');
 const path = require('path');
 const constTpl = require('./templates/constant');
 
-const generate = function() {};
-
 /**
  * creat redux constants
  * @param {string} asnwers - options provided when creating component
  * @param {function} cb - callback for status return
  */
-generate.prototype.createConstants = function({ answers: { constants, path: _path }, cb }) {
+export const createConstants = function({ answers: { constants, path: _path }, cb }) {
 	try {
     const consts = constants.replace(/\s/g, '').split(',');
     let output = '';
@@ -29,7 +27,7 @@ generate.prototype.createConstants = function({ answers: { constants, path: _pat
 	}
 }
 
-generate.prototype.createReducer = function({
+export const createReducer = function({
   name,
   answers: { constantsFromFile = true }
 }){
@@ -55,7 +53,7 @@ generate.prototype.createReducer = function({
           cases += casesTpl(constant);
         }
 
-        const template = fs.readFileSync(path.join(__dirname, 'templates/reducers.js'), 'utf-8');
+        const template = fs.readFileSync(path.join(__dirname, 'templates/reducers.tpl'), 'utf-8');
         const result = template
                         .replace(/<imports>/gi, imports)
                         .replace(/<cases>/gi, cases.replace(/^    /, '').substring(0, cases.length - 5))
@@ -69,5 +67,3 @@ generate.prototype.createReducer = function({
       console.log(e);
     }
 };
-
-module.exports = new generate();

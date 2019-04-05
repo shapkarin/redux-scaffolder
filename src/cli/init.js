@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 /**
  * Command Line Interface
  * 
@@ -7,12 +5,12 @@
  * and also all in one inquirer
  */
 
-const program = require('commander');
-const inquirer = require('inquirer');
+import program from 'commander';
+import inquirer from 'inquirer';
 // TODO: use other dependency, just adds color to the text for createConstants()
-const ora = require('ora');
+import ora from 'ora';
 
-const generate = require('../lib/generate');
+import { createConstants, createReducer } from '../lib/generate';
 
 program
   .command('constants [folder]')
@@ -40,7 +38,7 @@ program
           }
         }
       ]).then(function(answers) {
-        generate.createConstants({
+        createConstants({
           answers,
           folder,
           cb: function(status) {
@@ -54,7 +52,6 @@ program
         });
       });
 });
-
 
 program
   .command('reducer [name]')
@@ -70,7 +67,7 @@ program
           choices: ['yes', 'no']
         }
       ]).then(function(answers) {
-        generate.createReducer({
+        createReducer({
           answers,
           name,
           cb: function(status) {
