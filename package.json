@@ -1,6 +1,6 @@
 {
   "name": "redux-scaffolder",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "generate files for redux projects with nice command line interface",
   "main": "index.js",
   "engines": {
@@ -24,7 +24,8 @@
     "init",
     "automatization",
     "dx",
-    "tool"
+    "tool",
+    "devtools"
   ],
   "author": "Yury Shapkarin <yury@shapkarin.me> (https://shapkarin.me)",
   "license": "MIT",
