@@ -17,6 +17,8 @@ redux b
 redux b -c
 ```
 
+___
+
 Otherwise you can generate constants:
 ```
 # -p or --path to specify path/ACTION_TYPE
@@ -39,5 +41,7 @@ Reducer:
 redux reducer REDUCER_NAME
 # or
 redux r REDUCER_NAME
+# or leave name blank
+redux r
 ```
 
