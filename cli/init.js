@@ -22,7 +22,7 @@ program
   .command('const')
   .alias('c')
   .option('-p, --path', 'add namespace path/YOUR_CONST')
-  .action(function(some, {  path  }) {
+  .action(function({ path }) {
     inquirer
       .prompt([
         {
@@ -109,7 +109,28 @@ program
         }
       ]).then(function(answers){
         if(con){
-          // read consts from file
+
+          createActions({
+            cb: function(status) {
+              if (status) {
+                const spinner = ora();
+                spinner.text =
+                  'actions created successfully';
+                spinner.succeed();
+              }
+            }
+          });
+
+          createReducer({
+            cb: function(status) {
+              if (status) {
+                const spinner = ora();
+                spinner.text =
+                  'reducers created successfully';
+                spinner.succeed();
+              }
+            }
+          });
         } else {
           createConstants({
             answers,
