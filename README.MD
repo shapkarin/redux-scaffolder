@@ -1,13 +1,32 @@
-currently under development
+Generate three redux files from cli: 'constants.js, actions.js, reducers.js'
+
+Install 
 
 ```
 npm install -g redux-scaffolder
+```
 
-# generate constatnts.js
+Go in terminal to the component path
+then first you need to generate constants.
+
+```
+# -p or --path to specify path/ACTION_TYPE
 redux const -p
+# or
+redux c
+```
 
-# generate reducers.js
+Actions
+```
+redux actions
+# or
+redux a
+```
+
+Reducer
+```
+redux reducer REDUCER_NAME
+# or
 redux r REDUCER_NAME
 ```
 
-CLI will ask you a questions and then generate file two files

@@ -12,11 +12,15 @@ const inquirer = require('inquirer');
 // TODO: use other dependency, just adds color to the text for createConstants()
 const ora = require('ora');
 
-const { createConstants, createReducer } = require('../lib/generate');
+const { 
+  createConstants,
+  createReducer,
+  createActions
+} = require('../lib/generate');
 
 program
-  .command('constants [folder]')
-  .alias('const')
+  .command('const [folder]')
+  .alias('c')
   .option('-p, --path', 'add namespace path/YOUR_CONST')
   .action(function(folder, {  path  }) {
     inquirer
@@ -59,29 +63,33 @@ program
   .command('reducer [name]')
   .alias('r')
   .action(function(name) {
-    inquirer
-      .prompt([
-        {
-          type: 'list',
-          name: 'constantsFromFile',
-          message: 'Read constants from "constants.js" file',
-          paginated: true,
-          choices: ['yes', 'no']
+    createReducer({
+      name,
+      cb: function(status) {
+        if (status) {
+          const spinner = ora();
+          spinner.text =
+            'reducer created successfully';
+          spinner.succeed();
         }
-      ]).then(function(answers) {
-        createReducer({
-          answers,
-          name,
-          cb: function(status) {
-            if (status) {
-              const spinner = ora();
-              spinner.text =
-                'reducer created successfully';
-              spinner.succeed();
-            }
-          }
-        });
-      });
+      }
+    });
+});
+
+program
+  .command('actions')
+  .alias('a')
+  .action(function() {
+    createActions({
+      cb: function(status) {
+        if (status) {
+          const spinner = ora();
+          spinner.text =
+            'actions created successfully';
+          spinner.succeed();
+        }
+      }
+    });
 });
 
 /**
