@@ -100,6 +100,15 @@ program
       .prompt([
         {
           type: 'input',
+          name: 'path',
+          message: "Write path namespace/ACTION_TYPE (leave blank if you don't need that",
+          paginated: true,
+          when: function() {
+            return !con;
+          },
+        },
+        {
+          type: 'input',
           name: 'constants',
           message: 'Write constants separated by comma',
           paginated: true,

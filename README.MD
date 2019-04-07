@@ -8,10 +8,13 @@ npm install -g redux-scaffolder
 
 To generate constants, actions and reducers you can run:
 ```
-# use -c or --con to read consts from "constatns.js" file
 redux base 
-# or 
+
+# or
 redux b
+
+# or use -c (--con) to read consts from "constatns.js" file
+redux b -c
 ```
 
 Otherwise you can generate constants:
@@ -21,6 +24,8 @@ redux const -p
 # or
 redux c
 ```
+
+Then you can generate actions and reducers.
 
 Actions:
 ```

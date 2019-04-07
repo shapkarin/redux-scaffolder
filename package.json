@@ -1,6 +1,6 @@
 {
   "name": "redux-scaffolder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "generate files for redux projects with nice command line interface",
   "main": "index.js",
   "engines": {
