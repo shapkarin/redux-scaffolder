@@ -6,9 +6,15 @@ Install
 npm install -g redux-scaffolder
 ```
 
-Go in terminal to the component path
-then first you need to generate constants.
+To generate constants, actions and reducers you can run:
+> # use -c or --con to read consts from "constatns.js" file
+```
+redux base 
+# or 
+redux b
+```
 
+Otherwise you can generate constants:
 ```
 # -p or --path to specify path/ACTION_TYPE
 redux const -p
@@ -16,14 +22,14 @@ redux const -p
 redux c
 ```
 
-Actions
+Actions:
 ```
 redux actions
 # or
 redux a
 ```
 
-Reducer
+Reducer:
 ```
 redux reducer REDUCER_NAME
 # or
