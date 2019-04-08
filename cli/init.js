@@ -94,8 +94,8 @@ program
 program
   .command('base')
   .alias('b')
-  .option('-c, --con', 'read consts from "constatns.js" file?')
-  .action(function({ con }) {
+  .option('-r, --read', 'read consts from "constatns.js" file?')
+  .action(function({ read }) {
     inquirer
       .prompt([
         {
@@ -104,7 +104,7 @@ program
           message: "Write path namespace/ACTION_TYPE (leave blank if you don't need that",
           paginated: true,
           when: function() {
-            return !con;
+            return !read;
           },
         },
         {
@@ -113,11 +113,11 @@ program
           message: 'Write constants separated by comma',
           paginated: true,
           when: function() {
-            return !con;
+            return !read;
           }
         }
       ]).then(function(answers){
-        if(con){
+        if(read){
 
           createActions({
             cb: function(status) {
@@ -177,25 +177,7 @@ program
             }
           });
         }
-        // console.log(con)
-        // console.log('_________________')
-        // console.log(answers)
-        // createConstants({});
-        // createReducer();
-        // createActions({});
       });
-
-    // createReducer();
-    // createActions({
-    //   cb: function(status) {
-    //     if (status) {
-    //       const spinner = ora();
-    //       spinner.text =
-    //         'actions created successfully';
-    //       spinner.succeed();
-    //     }
-    //   }
-    // });
 });
 
 /**

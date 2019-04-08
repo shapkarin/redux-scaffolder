@@ -1,4 +1,4 @@
-Generate three redux files from cli: 'constants.js, actions.js, reducers.js'
+Generate three redux files from CLI: 'constants.js, actions.js, reducers.js'
 
 Install 
 
@@ -13,25 +13,28 @@ redux base
 # or
 redux b
 
-# or use -c (--con) to read consts from "constatns.js" file
+# or use -r (--read) to read consts from "constants.js" file
 redux b -c
 ```
 
 ___
 
-Otherwise you can generate constants:
+Otherwise you can generate constants.js:
 ```
 # -p or --path to specify path/ACTION_TYPE
 redux const -p
+
 # or
 redux c
 ```
 
 Then you can generate actions and reducers.
+Tools will read constants from previous step.
 
 Actions:
 ```
 redux actions
+
 # or
 redux a
 ```
@@ -39,8 +42,10 @@ redux a
 Reducer:
 ```
 redux reducer REDUCER_NAME
+
 # or
 redux r REDUCER_NAME
+
 # or leave name blank
 redux r
 ```
