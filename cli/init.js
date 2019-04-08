@@ -101,7 +101,7 @@ program
         {
           type: 'input',
           name: 'path',
-          message: "Write path namespace/ACTION_TYPE (leave blank if you don't need that",
+          message: "Write path namespace/ACTION_TYPE (leave blank if you don't need that)",
           paginated: true,
           when: function() {
             return !read;
