@@ -19,7 +19,7 @@ const {
 } = require('../lib/generate');
 
 program
-  .command('const')
+  .command('consts')
   .alias('c')
   .option('-p, --path', 'add namespace path/YOUR_CONST')
   .action(function({ path }) {

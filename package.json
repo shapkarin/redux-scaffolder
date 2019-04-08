@@ -1,6 +1,6 @@
 {
   "name": "redux-scaffolder",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Generate three redux files from CLI: constants.js, actions.js, reducers.js",
   "main": "index.js",
   "engines": {
@@ -25,7 +25,11 @@
     "automatization",
     "dx",
     "tool",
-    "devtools"
+    "tools",
+    "devtool",
+    "devtools",
+    "boilerplate",
+    "cli"
   ],
   "author": "Yury Shapkarin <yury@shapkarin.me> (https://shapkarin.me)",
   "license": "MIT",

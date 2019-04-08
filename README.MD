@@ -22,7 +22,7 @@ ___
 Otherwise you can generate constants.js:
 ```
 # -p or --path to specify path/ACTION_TYPE
-redux const -p
+redux consts -p
 
 # or
 redux c
