@@ -1,4 +1,4 @@
-Generate three redux files from CLI: 'constants.js, actions.js, reducers.js'
+Generate three redux files from CLI: "constants.js, actions.js, reducers.js"
 
 Install 
 
@@ -14,7 +14,7 @@ redux base
 redux b
 
 # or use -r (--read) to read consts from "constants.js" file
-redux b -c
+redux b -r
 ```
 
 ___
