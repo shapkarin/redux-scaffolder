@@ -1,7 +1,7 @@
 import {
   LOAD_START,
   LOAD_SUCCESS,
-  LOAD_ERROR,
+  LOAD_ERROR
 } from './constants';
 
 export const ACTION_NAME = () => ({
