@@ -18,7 +18,7 @@ redux b
 redux b -r
 ```
 
-[Example](https://github.com/shapkarin/redux-scaffolder/tree/master/example)
+[Result example](https://github.com/shapkarin/redux-scaffolder/tree/master/example)
 ___
 
 Otherwise you can generate constants.js:
