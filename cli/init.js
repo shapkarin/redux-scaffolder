@@ -64,14 +64,15 @@ program
   .alias('r')
   .action(function(name) {
     createReducer({
-      name,
-      cb: function(status) {
-        if (status) {
-          const spinner = ora();
-          spinner.text =
-            'reducer created successfully';
-          spinner.succeed();
-        }
+      name
+    }).then( status => {
+      if (status) {
+        const spinner = ora();
+        spinner.text = 'reducer created successfully';
+        spinner.succeed();
+      } else {
+        spinner.text = 'error';
+        spinner.fail();
       }
     });
 });
@@ -131,14 +132,14 @@ program
             }
           });
 
-          createReducer({
-            cb: function(status) {
-              if (status) {
-                const spinner = ora();
-                spinner.text =
-                  'reducers created successfully';
-                spinner.succeed();
-              }
+          createReducer().then( status => {
+            if (status) {
+              const spinner = ora();
+              spinner.text = 'reducer created successfully';
+              spinner.succeed();
+            } else {
+              spinner.text = 'error';
+              spinner.fail();
             }
           });
         } else {
@@ -168,14 +169,15 @@ program
           });
 
           createReducer({
-            constants: answers.constants,
-            cb: function(status) {
-              if (status) {
-                const spinner = ora();
-                spinner.text =
-                  'reducers created successfully';
-                spinner.succeed();
-              }
+            constants: answers.constants
+          }).then( status => {
+            if (status) {
+              const spinner = ora();
+              spinner.text = 'reducer created successfully';
+              spinner.succeed();
+            } else {
+              spinner.text = 'error';
+              spinner.fail();
             }
           });
         }
