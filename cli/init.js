@@ -18,6 +18,17 @@ const {
   createActions
 } = require('../lib/generate');
 
+const print = (name, status) => {
+  const spinner = ora();
+  if (status) {
+    spinner.text = `${name} created successfully`;
+    spinner.succeed();
+  } else {
+    spinner.text = 'error';
+    spinner.fail();
+  }
+}
+
 program
   .command('consts')
   .alias('c')
@@ -47,14 +58,7 @@ program
         createConstants({
           answers
         }).then(status => {
-          if (status) {
-            const spinner = ora();
-            spinner.text = 'constants created successfully';
-            spinner.succeed();
-          } else {
-            spinner.text = 'error';
-            spinner.fail();
-          }
+          print('constants', status);
         });
       });
 });
@@ -65,15 +69,8 @@ program
   .action(function(name) {
     createReducer({
       name
-    }).then( status => {
-      if (status) {
-        const spinner = ora();
-        spinner.text = 'reducer created successfully';
-        spinner.succeed();
-      } else {
-        spinner.text = 'error';
-        spinner.fail();
-      }
+    }).then(status => {
+      print('reducers', status);
     });
 });
 
@@ -81,16 +78,8 @@ program
   .command('actions')
   .alias('a')
   .action(function() {
-    createActions().then( status => {
-      if (status) {
-        const spinner = ora();
-        spinner.text =
-          'actions created successfully';
-        spinner.succeed();
-      } else {
-        spinner.text = 'error';
-        spinner.fail();
-      }
+    createActions().then(status => {
+      print('actions', status);
     })
 });
 
@@ -122,67 +111,29 @@ program
       ]).then(function(answers){
         if(read){
           createActions().then(status => {
-            //console.log(status);
-            if (status === true) {
-              const spinner = ora();
-              spinner.text =
-                'actions created successfully';
-              spinner.succeed();
-            } else {
-              spinner.text = 'error';
-              spinner.fail();
-            }
+            print('actions', status);
           });
 
           createReducer().then(status => {
-            if (status === true) {
-              const spinner = ora();
-              spinner.text = 'reducer created successfully';
-              spinner.succeed();
-            } else {
-              spinner.text = 'error';
-              spinner.fail();
-            }
+            print('reducers', status);
           });
         } else {
           createConstants({
             answers
           }).then(status => {
-            if (status) {
-              const spinner = ora();
-              spinner.text =
-                'constants created successfully';
-              spinner.succeed();
-            } else {
-              spinner.text = 'error';
-              spinner.fail();
-            }
+            print('constants', status);
           });
+
           createActions({
             constants: answers.constants
           }).then(status => {
-            if (status) {
-              const spinner = ora();
-              spinner.text =
-                'actions created successfully';
-              spinner.succeed();
-            } else {
-              spinner.text = 'error';
-              spinner.fail();
-            }
+            print('actions', status);
           });
 
           createReducer({
             constants: answers.constants
           }).then(status => {
-            if (status) {
-              const spinner = ora();
-              spinner.text = 'reducer created successfully';
-              spinner.succeed();
-            } else {
-              spinner.text = 'error';
-              spinner.fail();
-            }
+            print('reducers', status);
           });
         }
       });
