@@ -13,4 +13,3 @@ export const ACTION_NAME = () => ({
 export const ACTION_NAME = () => ({
   type: LOAD_ERROR
 });
-
