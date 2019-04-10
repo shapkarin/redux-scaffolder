@@ -45,14 +45,15 @@ program
         }
       ]).then(function(answers) {
         createConstants({
-          answers,
-          cb: function(status) {
-            if (status) {
-              const spinner = ora();
-              spinner.text =
-                'constants created successfully';
-              spinner.succeed();
-            }
+          answers
+        }).then(status => {
+          if (status) {
+            const spinner = ora();
+            spinner.text = 'constants created successfully';
+            spinner.succeed();
+          } else {
+            spinner.text = 'error';
+            spinner.fail();
           }
         });
       });
@@ -142,17 +143,18 @@ program
           });
         } else {
           createConstants({
-            answers,
-            cb: function(status) {
-              if (status) {
-                const spinner = ora();
-                spinner.text =
-                  'constants created successfully';
-                spinner.succeed();
-              }
+            answers
+          }).then(status => {
+            if (status) {
+              const spinner = ora();
+              spinner.text =
+                'constants created successfully';
+              spinner.succeed();
+            } else {
+              spinner.text = 'error';
+              spinner.fail();
             }
           });
-
           createActions({
             constants: answers.constants,
             cb: function(status) {
