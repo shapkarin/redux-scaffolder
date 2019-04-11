@@ -29,6 +29,9 @@ const print = (name, status) => {
   }
 }
 
+// program
+//   .option('-v, --version')
+
 program
   .command('consts')
   .alias('c')
