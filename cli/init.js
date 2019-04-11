@@ -18,8 +18,7 @@ const {
   createActions
 } = require('../lib/generate');
 
-const print = (name, status) => {
-  const spinner = ora();
+const print = (spinner, name, status) => {
   if (status) {
     spinner.text = `${name} created successfully`;
     spinner.succeed();
@@ -58,10 +57,11 @@ program
           }
         }
       ]).then(function(answers) {
+        const spinner = ora('generating constants').start();
         createConstants({
           answers
         }).then(status => {
-          print('constants', status);
+          print(spinner, 'constants', status);
         });
       });
 });
@@ -70,10 +70,11 @@ program
   .command('reducer [name]')
   .alias('r')
   .action(function(name) {
+    const spinner = ora('generating reducers').start();
     createReducer({
       name
     }).then(status => {
-      print('reducers', status);
+      print(spinner, 'reducers', status);
     });
 });
 
@@ -81,8 +82,9 @@ program
   .command('actions')
   .alias('a')
   .action(function() {
+    const spinner = ora('generating actions').start();
     createActions().then(status => {
-      print('actions', status);
+      print(spinner, 'actions', status);
     })
 });
 
@@ -112,31 +114,36 @@ program
           }
         }
       ]).then(function(answers){
+        const spinner_actions = ora('generating actions').start();
+        const spinner_reducers = ora('generating reducers').start();
+
         if(read){
           createActions().then(status => {
-            print('actions', status);
+            print(spinner_actions, 'actions', status);
           });
 
           createReducer().then(status => {
-            print('reducers', status);
+            print(spinner_reducers, 'reducers', status);
           });
         } else {
+          const spinner_constants = ora('generating constants').start();
+
           createConstants({
             answers
           }).then(status => {
-            print('constants', status);
+            print(spinner_constants, 'constants', status);
           });
 
           createActions({
             constants: answers.constants
           }).then(status => {
-            print('actions', status);
+            print(spinner_actions, 'actions', status);
           });
 
           createReducer({
             constants: answers.constants
           }).then(status => {
-            print('reducers', status);
+            print(spinner_reducers, 'reducers', status);
           });
         }
       });
