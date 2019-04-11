@@ -18,6 +18,8 @@
   },
   "keywords": [
     "redux",
+    "redux-cli",
+    "scaffold",
     "scaffolder",
     "scaffolding",
     "generate",
