@@ -1,6 +1,7 @@
 const path = require('path');
 //const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 
 const configuration = {
@@ -20,32 +21,24 @@ const configuration = {
     alias: {
       Components: path.resolve(__dirname, './src/Components'),
       Utils: path.resolve(__dirname, './src/utils'),
-      theme: path.resolve(__dirname, './src/css/descriptions.less'),
-      assets: path.resolve(__dirname, './src/assets'),
-      '@preloader': path.resolve(__dirname, './src/Components/Preloader')
     }
   },
   plugins: [
-    //new webpack.NamedModulesPlugin(),
-    // new CleanWebpackPlugin(
-    //   ['build'], {
-    //     root: path.resolve(__dirname, 'build'),
-    //     verbose: true,
-    //     dry: false
-    //   })
+    new BundleAnalyzerPlugin()
   ],
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
             options: {
               presets: [
                 '@babel/preset-env',
-              ]
+              ],
+              plugins: ['lodash']
             }
           }
         ]
