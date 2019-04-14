@@ -1,6 +1,6 @@
 {
   "name": "redux-scaffolder",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Generate three redux files by CLI: constants.js, actions.js, reducers.js",
   "engines": {
     "node": ">=8"
