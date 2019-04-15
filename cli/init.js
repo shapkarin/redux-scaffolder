@@ -15,7 +15,8 @@ const ora = require('ora');
 const { 
   createConstants,
   createReducer,
-  createActions
+  createActions,
+  checkAndCreate
 } = require('../lib/generate');
 
 const print = (spinner, name, status) => {
@@ -92,7 +93,8 @@ program
   .command('base')
   .alias('b')
   .option('-r, --read', 'read consts from "constatns.js" file?')
-  .action(function({ read }) {
+  .option('-d, --dir [name]', 'to create directory')
+  .action(function({ read, dir: folderName = false }) {
     inquirer
       .prompt([
         {
@@ -117,7 +119,7 @@ program
         const spinner_actions = ora('generating actions').start();
         const spinner_reducers = ora('generating reducers').start();
 
-        if(read){
+        if(read && folderName === false){
           createActions().then(status => {
             print(spinner_actions, 'actions', status);
           });
@@ -128,20 +130,29 @@ program
         } else {
           const spinner_constants = ora('generating constants').start();
 
+          if(folderName){
+            // checkAndCreate(folderName).then(result => console.log(result))
+          }else{
+            return false;
+          }
+
           createConstants({
-            answers
+            answers,
+            folderName,
           }).then(status => {
             print(spinner_constants, 'constants', status);
           });
 
           createActions({
-            constants: answers.constants
+            constants: answers.constants,
+            folderName
           }).then(status => {
             print(spinner_actions, 'actions', status);
           });
 
           createReducer({
-            constants: answers.constants
+            constants: answers.constants,
+            folderName
           }).then(status => {
             print(spinner_reducers, 'reducers', status);
           });

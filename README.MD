@@ -13,42 +13,38 @@ redux base
 
 # alias
 redux b
-
-# or use -r (--read) to read consts from "constants.js" file
-redux b -r
 ```
+
+Options for `base` command:
+- `-r (--read)` to read consts from "constants.js" file
+- `-d (--dir)` to create directory 
 
 [Result example](https://github.com/shapkarin/redux-scaffolder/tree/master/example)
 ___
 
-Otherwise you can generate constants.js:
+Otherwise you can generate constants.js with `consts` command (alias `c`):
 ```
-# -p or --path to specify path/ACTION_TYPE
-redux consts -p
+redux consts
+```
 
-# or
-redux c
-```
+Options for `consts` command:
+- `-p (--path)` to specify path/ACTION_TYPE
 
 Then you can generate actions and reducers.
-Tools will read constants from previous step.
+Tool will read constants from previous step.
 
-Actions:
+To create actions.js use `actions` (alias `a`) command:
 ```
 redux actions
-
-# or
-redux a
 ```
 
-Reducer:
+To generate reducers.js there is `reducer [name]` (alias `r`) command:
 ```
 redux reducer REDUCER_NAME
+```
 
-# or
-redux r REDUCER_NAME
-
-# or leave name blank
+Or leave name blank:
+```
 redux r
 ```
 
