@@ -226,7 +226,8 @@ program
   .command('saga')
   .alias('s')
   // .option('-f, --fetch', 'add base fetch worker')
-  .action(function({ path }) {
+  .option('-c, --consts', 'add base fetch worker')
+  .action(function({ consts }) {
     inquirer
       .prompt([
         {
@@ -244,8 +245,7 @@ program
           name: 'constants',
           message: 'separated by comma',
           validate: function(input) {
-            // TODO: not starts from nubmer
-            return true;
+            return consts;
           }
         }
       ]).then(function(answers) {
