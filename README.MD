@@ -11,11 +11,11 @@ To generate constants, actions and reducers you can run `base` (alias `b`) comma
 # Then CLI will ask you to write your constants and generate files.
 redux base 
 ```
+[Result example](https://github.com/shapkarin/redux-scaffolder/tree/master/example)
 
 Options for `base` command:
 - `-r (--read)` to read consts from "constants.js" file
 
-[Result example](https://github.com/shapkarin/redux-scaffolder/tree/master/example)
 ___
 
 Otherwise you can generate constants.js with `consts` command (alias `c`):
