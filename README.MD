@@ -6,13 +6,10 @@ Install
 npm install -g redux-scaffolder
 ```
 
-To generate constants, actions and reducers you can run:
+To generate constants, actions and reducers you can run `base` (alias `b`) command:
 ```
 # Then CLI will ask you to write your constants and generate files.
 redux base 
-
-# alias
-redux b
 ```
 
 Options for `base` command:
