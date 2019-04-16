@@ -18,7 +18,75 @@ const {
   createActions
 } = require('../lib/generate');
 
+const print = (spinner, name, status) => {
+  if (status) {
+    spinner.text = `${name} created successfully`;
+    spinner.succeed();
+  } else {
+    spinner.text = 'error';
+    spinner.fail();
+  }
+}
 
+// program
+//   .option('-v, --version')
+
+program
+  .command('consts')
+  .alias('c')
+  .option('-p, --path', 'add namespace path/YOUR_CONST')
+  .action(function({ path }) {
+    inquirer
+      .prompt([
+        {
+          type: 'input',
+          name: 'path',
+          message: 'namespace path/YOUR_CONST',
+          paginated: true,
+          when: function() {
+            return path;
+          }
+        },
+        {
+          type: 'input',
+          name: 'constants',
+          message: 'separated by comma',
+          validate: function(input) {
+            // TODO: not starts from nubmer
+            return true;
+          }
+        }
+      ]).then(function(answers) {
+        const spinner = ora('generating constants').start();
+        createConstants({
+          answers
+        }).then(status => {
+          print(spinner, 'constants', status);
+        });
+      });
+});
+
+program
+  .command('reducer [name]')
+  .alias('r')
+  .action(function(name) {
+    const spinner = ora('generating reducers').start();
+    createReducer({
+      name
+    }).then(status => {
+      print(spinner, 'reducers', status);
+    });
+});
+
+program
+  .command('actions')
+  .alias('a')
+  .action(function() {
+    const spinner = ora('generating actions').start();
+    createActions().then(status => {
+      print(spinner, 'actions', status);
+    })
+});
 
 program
   .command('base')
@@ -46,64 +114,36 @@ program
           }
         }
       ]).then(function(answers){
-        if(read){
+        const spinner_actions = ora('generating actions').start();
+        const spinner_reducers = ora('generating reducers').start();
 
-          createActions({
-            cb: function(status) {
-              if (status) {
-                const spinner = ora();
-                spinner.text =
-                  'actions created successfully';
-                spinner.succeed();
-              }
-            }
+        if(read){
+          createActions().then(status => {
+            print(spinner_actions, 'actions', status);
           });
 
-          createReducer({
-            cb: function(status) {
-              if (status) {
-                const spinner = ora();
-                spinner.text =
-                  'reducers created successfully';
-                spinner.succeed();
-              }
-            }
+          createReducer().then(status => {
+            print(spinner_reducers, 'reducers', status);
           });
         } else {
+          const spinner_constants = ora('generating constants').start();
+
           createConstants({
-            answers,
-            cb: function(status) {
-              if (status) {
-                const spinner = ora();
-                spinner.text =
-                  'constants created successfully';
-                spinner.succeed();
-              }
-            }
+            answers
+          }).then(status => {
+            print(spinner_constants, 'constants', status);
           });
 
           createActions({
-            constants: answers.constants,
-            cb: function(status) {
-              if (status) {
-                const spinner = ora();
-                spinner.text =
-                  'actions created successfully';
-                spinner.succeed();
-              }
-            }
+            constants: answers.constants
+          }).then(status => {
+            print(spinner_actions, 'actions', status);
           });
 
           createReducer({
-            constants: answers.constants,
-            cb: function(status) {
-              if (status) {
-                const spinner = ora();
-                spinner.text =
-                  'reducers created successfully';
-                spinner.succeed();
-              }
-            }
+            constants: answers.constants
+          }).then(status => {
+            print(spinner_reducers, 'reducers', status);
           });
         }
       });

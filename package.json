@@ -1,13 +1,12 @@
 {
   "name": "redux-scaffolder",
-  "version": "1.0.9",
+  "version": "1.2.4",
   "description": "Generate three redux files by CLI: constants.js, actions.js, reducers.js",
-  "main": "index.js",
   "engines": {
-    "node": ">=5.12.0"
+    "node": ">=8"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "bin": {
     "redux": "./cli/init.js"
@@ -18,6 +17,8 @@
   },
   "keywords": [
     "redux",
+    "redux-cli",
+    "scaffold",
     "scaffolder",
     "scaffolding",
     "generate",

@@ -7,10 +7,11 @@ import {
 export const ACTION_NAME = () => ({
   type: LOAD_START
 });
+
 export const ACTION_NAME = () => ({
   type: LOAD_SUCCESS
 });
+
 export const ACTION_NAME = () => ({
   type: LOAD_ERROR
 });
-
