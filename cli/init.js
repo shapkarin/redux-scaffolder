@@ -1,15 +1,7 @@
 #!/usr/bin/env node
 
-/**
- * Command Line Interface
- * 
- * TODO: generate constatns, actions, reducers independed
- * and also all in one inquirer
- */
-
 const program = require('commander');
 const inquirer = require('inquirer');
-// TODO: use other dependency, just adds color to the text for createConstants()
 const ora = require('ora');
 
 const { 
