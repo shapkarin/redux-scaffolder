@@ -28,8 +28,8 @@ const print = (spinner, name, status) => {
   }
 }
 
-// program
-//   .option('-v, --version')
+program
+  .version('1.2.5', '-v, --version')
 
 program
   .command('consts')
@@ -98,7 +98,7 @@ program
         {
           type: 'input',
           name: 'path',
-          message: "Write path namespace/ACTION_TYPE (leave blank if you don't need that)",
+          message: 'Write path "namespace/ACTION_TYPE" (you can leave it blank)',
           paginated: true,
           when: function() {
             return !read;
