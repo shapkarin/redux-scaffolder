@@ -6,7 +6,7 @@
     "node": ">=8"
   },
   "bin": {
-    "redux": "./cli/init.js"
+    "rs": "./cli/init.js"
   },
   "repository": {
     "type": "git",
