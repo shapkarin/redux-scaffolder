@@ -26,7 +26,7 @@ ___
 
 Otherwise you can generate "constants.js" with `consts` command (alias `c`):
 ```
-rs consts
+rs c
 ```
 
 Options for `consts` command:
@@ -37,16 +37,14 @@ Tool will read constants from "constants.js" file.
 
 To create actions.js use `actions` (alias `a`) command:
 ```
-rs actions
+rs a
 ```
 
 To generate reducers.js there is `reducer [name]` (alias `r`) command:
 ```
-rs reducer REDUCER_NAME
-```
+rs r REDUCER_NAME
 
-Or leave name blank:
-```
+# or leave name blank
 rs r
 ```
 
