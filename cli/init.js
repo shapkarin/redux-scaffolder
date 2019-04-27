@@ -11,7 +11,7 @@ const {
 } = require('../lib/generate');
 
 const print = (spinner, name, status) => {
-  if (status) {
+  if (status === true) {
     spinner.text = `${name} created successfully`;
     spinner.succeed();
   } else {
