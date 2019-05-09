@@ -8,10 +8,10 @@ npm install -g redux-scaffolder
 
 To generate constants, actions and reducers you can run `base` (alias `b`) command. Next CLI will ask you to write your constants.
 ```
-rs base 
+redux base 
 
 # alias 
-rs b
+redux b
 ```
 [Result example](https://github.com/shapkarin/redux-scaffolder/tree/master/example)
 
@@ -20,13 +20,13 @@ Note: yours input consts will be transformed to uppercase
 Options for `base` command:
 - `-r (--read)` to read consts from "constants.js" file
 ```
-rs b -r
+redux b -r
 ```
 ___
 
 Otherwise you can generate "constants.js" with `consts` command (alias `c`):
 ```
-rs c
+redux c
 ```
 
 Options for `consts` command:
@@ -37,14 +37,14 @@ Tool will read constants from "constants.js" file.
 
 To create actions.js use `actions` (alias `a`) command:
 ```
-rs a
+redux a
 ```
 
 To generate reducers.js there is `reducer [name]` (alias `r`) command:
 ```
-rs r REDUCER_NAME
+redux r REDUCER_NAME
 
 # or leave name blank
-rs r
+redux r
 ```
 
