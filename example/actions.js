@@ -4,14 +4,14 @@ import {
   LOAD_ERROR
 } from './constants';
 
-export const ACTION_NAME = () => ({
+export const loadStart = () => ({
   type: LOAD_START
 });
 
-export const ACTION_NAME = () => ({
+export const loadSuccess = () => ({
   type: LOAD_SUCCESS
 });
 
-export const ACTION_NAME = () => ({
+export const loadError = () => ({
   type: LOAD_ERROR
 });
