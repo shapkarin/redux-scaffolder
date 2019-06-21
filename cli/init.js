@@ -21,7 +21,7 @@ const print = (spinner, name, status) => {
 }
 
 program
-  .version('1.2.7', '-v, --version')
+  .version('1.3.1', '-v, --version')
 
 program
   .command('consts')

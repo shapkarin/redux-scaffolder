@@ -1,5 +1,9 @@
 Generate three redux files from CLI: "constants.js, actions.js, reducers.js"
 
+![npm](https://img.shields.io/npm/v/redux-scaffolder.svg)
+![npm](https://img.shields.io/npm/dt/redux-scaffolder.svg)
+![NPM](https://img.shields.io/npm/l/redux-scaffolder.svg)
+
 Install 
 
 ```
