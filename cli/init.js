@@ -15,13 +15,14 @@ const print = (spinner, name, status) => {
     spinner.text = `${name} created successfully`;
     spinner.succeed();
   } else {
-    spinner.text = 'error';
+    console.log(status);
+    spinner.text = status.message;
     spinner.fail();
   }
 }
 
 program
-  .version('1.3.1', '-v, --version')
+  .version('2.0.0', '-v, --version');
 
 program
   .command('consts')
