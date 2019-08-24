@@ -142,6 +142,16 @@ program
       });
 });
 
+program
+  .command('mem')
+  .alias('m')
+  .action(function() {
+    const spinner = ora('generating actions').start();
+    createActions().then(status => {
+      print(spinner, 'actions', status);
+    })
+});
+
 /**
  * parse commander object
  */
