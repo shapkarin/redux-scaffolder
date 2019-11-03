@@ -13,9 +13,9 @@ const {
 } = require('../lib/generate');
 
 // todo: rename
-const print = (spinner, name, status) => {
-  if (status === true) {
-    spinner.text = `${name} created successfully`;
+const print = (spinner, name, { status, destination }) => {
+  if (status) {
+    spinner.text = `${name} created successfully at ${destination}`;
     spinner.succeed();
   } else {
     spinner.text = 'error';
@@ -48,29 +48,14 @@ program
           type: 'input',
           name: 'constants',
           message: 'separated by comma',
-          validate: function(constants) {
-            const constsArray = constants.replace(/\,$/, '').split(",");
-            const options = { enableScope: false, enableBrackets: false }
-            const validated = constsArray.map(c => ({ name: c, valid: isValidVar(c.trim(), options) }));
-
-            const notValid = validated.filter(c => !c.valid);
-            console.log(JSON.stringify(notValid));
-            const notValidLength = notValid.length;
-
-            if(notValidLength > 0){
-              const notValidString = notValid.map(c => c.name.trim()).join(', ');
-              return `Constants "${notValidString}" ${notValidLength === 1 ? 'is' : 'are'} not valid`
-            } else {
-              return true;
-            }
-          }
+          validate: constantsValidation
         }
       ]).then(function(answers) {
         const spinner = ora('generating constants').start();
         createConstants({
           answers
-        }).then(status => {
-          print(spinner, 'constants', status);
+        }).then(response => {
+          print(spinner, 'constants', response);
         });
       });
 });
@@ -82,8 +67,8 @@ program
     const spinner = ora('generating reducers').start();
     createReducer({
       name
-    }).then(status => {
-      print(spinner, 'reducers', status);
+    }).then(response => {
+      print(spinner, 'reducers', response);
     });
 });
 
@@ -92,8 +77,8 @@ program
   .alias('a')
   .action(function() {
     const spinner = ora('generating actions').start();
-    createActions().then(status => {
-      print(spinner, 'actions', status);
+    createActions().then(response => {
+      print(spinner, 'actions', response);
     })
 });
 
@@ -120,43 +105,60 @@ program
           paginated: true,
           when: function() {
             return !read;
-          }
+          },
+          validate: constantsValidation
         }
       ]).then(function(answers){
         const spinner_actions = ora('generating actions').start();
         const spinner_reducers = ora('generating reducers').start();
 
         if(read){
-          createActions().then(status => {
-            print(spinner_actions, 'actions', status);
+          createActions().then(response => {
+            print(spinner_actions, 'actions', response);
           });
 
-          createReducer().then(status => {
-            print(spinner_reducers, 'reducers', status);
+          createReducer().then(response => {
+            print(spinner_reducers, 'reducers', response);
           });
         } else {
           const spinner_constants = ora('generating constants').start();
 
           createConstants({
             answers
-          }).then(status => {
-            print(spinner_constants, 'constants', status);
+          }).then(response => {
+            print(spinner_constants, 'constants', response);
           });
 
           createActions({
             constants: answers.constants
-          }).then(status => {
-            print(spinner_actions, 'actions', status);
+          }).then(response => {
+            print(spinner_actions, 'actions', response);
           });
 
           createReducer({
             constants: answers.constants
-          }).then(status => {
-            print(spinner_reducers, 'reducers', status);
+          }).then(response => {
+            print(spinner_reducers, 'reducers', response);
           });
         }
       });
 });
+
+function constantsValidation(constants){
+  // todo: refact
+  const constsArray = constants.replace(/\,$/, '').split(",");
+  const options = { enableScope: false, enableBrackets: false }
+  const validated = constsArray.map(c => ({ name: c, valid: isValidVar(c.trim(), options) }));
+  const notValid = validated.filter(c => !c.valid);
+  const notValidLength = notValid.length;
+
+  if(notValidLength > 0){
+    const notValidString = notValid.map(c => c.name.trim()).join(', ');
+    return `Constant${notValidLength === 1 ? '' : 's'} "${notValidString}" ${notValidLength === 1 ? 'is' : 'are'} not valid`
+  } else {
+    return true;
+  }
+}
 
 /**
  * parse commander object
