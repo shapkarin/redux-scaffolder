@@ -8,6 +8,9 @@
   "bin": {
     "redux": "./cli/init.js"
   },
+  "scripts": {
+    "cli": "node ./cli/init.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shapkarin/redux-scaffolder.git"
