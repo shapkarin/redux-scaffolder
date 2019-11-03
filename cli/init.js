@@ -3,6 +3,8 @@
 const program = require('commander');
 const inquirer = require('inquirer');
 const ora = require('ora');
+const { isValid: isValidVar  } = require('var-validator');
+
 
 const { 
   createConstants,
@@ -10,6 +12,7 @@ const {
   createActions
 } = require('../lib/generate');
 
+// todo: rename
 const print = (spinner, name, status) => {
   if (status === true) {
     spinner.text = `${name} created successfully`;
@@ -20,8 +23,10 @@ const print = (spinner, name, status) => {
   }
 }
 
+const { version } = require('../package.json');
+
 program
-  .version('1.3.1', '-v, --version')
+  .version(version, '-v, --version')
 
 program
   .command('consts')
@@ -43,9 +48,21 @@ program
           type: 'input',
           name: 'constants',
           message: 'separated by comma',
-          validate: function(input) {
-            // TODO: not starts from nubmer
-            return true;
+          validate: function(constants) {
+            const constsArray = constants.replace(/\,$/, '').split(",");
+            const options = { enableScope: false, enableBrackets: false }
+            const validated = constsArray.map(c => ({ name: c, valid: isValidVar(c.trim(), options) }));
+
+            const notValid = validated.filter(c => !c.valid);
+            console.log(JSON.stringify(notValid));
+            const notValidLength = notValid.length;
+
+            if(notValidLength > 0){
+              const notValidString = notValid.map(c => c.name.trim()).join(', ');
+              return `Constants "${notValidString}" ${notValidLength === 1 ? 'is' : 'are'} not valid`
+            } else {
+              return true;
+            }
           }
         }
       ]).then(function(answers) {
