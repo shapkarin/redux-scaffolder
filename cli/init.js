@@ -13,13 +13,14 @@ const {
 } = require('../lib/generate');
 
 // todo: rename
-const print = (spinner, name, { status, destination }) => {
+const print = (spinner, name, { status, destination, error }) => {
   if (status) {
     spinner.text = `${name} created successfully at ${destination}`;
     spinner.succeed();
   } else {
     spinner.text = 'error';
     spinner.fail();
+    throw new Erorr(error);
   }
 }
 
