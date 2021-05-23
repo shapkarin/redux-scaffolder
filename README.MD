@@ -4,6 +4,9 @@ Generate three redux files from CLI: "constants.js, actions.js, reducers.js"
 ![npm](https://img.shields.io/npm/dt/redux-scaffolder.svg)
 ![NPM](https://img.shields.io/npm/l/redux-scaffolder.svg)
 
+### If you want to [say thank you](https://github.com/shapkarin/extend-saga-routines/blob/master/thanks.md).
+
+
 Install 
 
 ```
