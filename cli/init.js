@@ -29,8 +29,8 @@ program
   .version(version, '-v, --version')
 
 program
-  .command('consts')
-  .alias('c')
+  .command('constants')
+  .alias('c', 'consts',)
   .option('-p, --path', 'add namespace path/YOUR_CONST')
   .action(function({ path }) {
     inquirer
