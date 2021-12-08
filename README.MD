@@ -27,11 +27,9 @@ Note: yours input consts will be transformed to uppercase
 Options for `base` command:
 - `-r (--read)` to read consts from "constants.js" file
 ```
-redux base
 redux base --read
 
 # alias
-redux b
 redux b -r
 ```
 ___
